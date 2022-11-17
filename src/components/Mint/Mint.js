@@ -40,7 +40,7 @@ const Mint = () => {
           return false;
         });
 
-      const valueEth = web3.utils.fromWei(`${5}`, 'ether');  
+      const valueEth = web3.utils.fromWei(`${price || 0}`, 'ether');  
 
       setTokenPrice(valueEth);
     };
@@ -104,6 +104,7 @@ const Mint = () => {
           // setTimeout(() => {
           //   setSuccess(true);
           // }, 1000);
+          
           console.log('Transaction Confirmed', receipt);
         })
         .on('error', function (error, receipt) {
@@ -113,6 +114,7 @@ const Mint = () => {
     } catch (error) {}
   };
   return (
+    
     <div id='mint_link'>
       <div className='wallet-client'>
         <p>Balance {userBalance} eth</p>
