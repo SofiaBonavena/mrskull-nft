@@ -16,12 +16,6 @@
 
 } 
 
-.hero.is-info .title {
-    font-family:'Shrikhand';
-    font-size: 80px;
-    letter-spacing: 5px;
-    color: white;
-}
 
 .subtitle {
     font-family: montserrat;
@@ -29,4 +23,25 @@
     font-size: 20px;
     letter-spacing: 2px;
     color: #48c753;
+}
+
+@media only screen and (max-width: 769px) {
+    .hero.is-info .title {
+        font-family:'Shrikhand';
+        font-size: 60px;
+        letter-spacing: 5px;
+        color: white;
+        margin-top: 25%;
+    }
+    
+}
+
+@media only screen and (min-width: 769px) {
+    .hero.is-info .title {
+        font-family:'Shrikhand';
+        font-size: 80px;
+        letter-spacing: 5px;
+        color: white;
+    }
+
 }
