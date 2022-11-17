@@ -5,7 +5,7 @@ import React, {
   useCallback,
   useContext,
 } from "react";
-import Web3 from "web3";
+import Web3 from "web3"; 
 import { initOnboard } from "../services/onboard/services";
 
 const OnboardContext = createContext();

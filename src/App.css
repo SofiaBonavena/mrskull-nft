@@ -1,5 +1,5 @@
 .App.App {
-  background-color: #282c34;
+  background-color: #163328;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -15,19 +15,23 @@
   background-color: black;
   padding: 50px;
   border-radius: 60px;
+  border-color: #55B140;
   width: 300px;
   height: 200px;
 }
 
 .App button {
-  background-color: black;
+  background-color: #55B140;
+  font-size: 15px;
   border-radius: 60px;
   border:0;
   color:white;
   padding: 10px 30px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 .App button:hover {
-  background-color: gray;
+  background-color:#136600;
   cursor: pointer;
   
 }
+
