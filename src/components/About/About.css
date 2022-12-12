@@ -4,6 +4,29 @@
     background-color: #2F5646;
     /* border-top-left-radius: 120px;
     border-top-right-radius: 120px; */
+    background-image: url('/src/assets/backgroundskulls_1.png'); background-position: center;
+    background-color: #ffffff00;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+@media screen and (min-width: 769px), print {
+    .columns:not(.is-desktop) {
+        display: flex;
+        width: 70%;
+        margin: 0 auto;
+    }
+}
+
+.columns {
+    padding-top: 5%;
+}
+.column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 h1 {
@@ -13,7 +36,7 @@ h1 {
   }
 
 h2 {
-    font-size: 25px;
+    font-size: 30px;
     font-family: Montserrat;
     font-weight: 400;
     text-align: center;
@@ -63,7 +86,7 @@ h3 {
     -webkit-backface-visibility: hidden;
     /* Safari */
     backface-visibility: hidden;
-    border-radius: 15px;
+    border-radius: 45px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -72,12 +95,13 @@ h3 {
 }
 
 .card__giratorio-conteudo--frente {
-    background: linear-gradient(-229deg, #55b140, #3f867e);
+    background: linear-gradient(-229deg, #2b621e, #21413e);
     box-shadow: 0 19px 38px rgba(63, 104, 50, 0.3), 0 15px 12px rgba(0,0,0,0.22);
+
 }
 
 .card__giratorio-conteudo--traseira {
-    background: linear-gradient(229deg, #55b140, #3f867e);
+    background: linear-gradient(-229deg, #2b621e, #21413e);
     color: white;
     transform: rotateY(180deg);
     box-shadow: 0 19px 38px rgba(63, 104, 50, 0.3), 0 15px 12px rgba(0,0,0,0.22);

@@ -11,6 +11,9 @@ const Hero = () => (
         <p className="subtitle">
           Collection of NFT's
         </p>
+        <a href="https://testnets.opensea.io/collection/maimonnftproject-v2" target="_blank" rel="noreferrer">
+          <button>Opensea</button>
+        </a>
       </div>
     </section>
   );

@@ -1,27 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import 'bulma/css/bulma.min.css';
-import '../Mint/Mint.css';
-import Web3 from 'web3';
+import React, { useState, useEffect } from "react";
+import "bulma/css/bulma.min.css";
+import "../Mint/Mint.css";
+import Web3 from "web3";
 import {
   useAddress,
   useWalletProvider,
   useBalance,
-} from '../../contexts/OnboardContext';
-import { factoryAddress, factoryAbi } from '../../services/onboard/contract';
+} from "../../contexts/OnboardContext";
+import { factoryAddress, factoryAbi } from "../../services/onboard/contract";
 
 const Mint = () => {
   const address = useAddress();
   const balance = useBalance();
   const provider = useWalletProvider();
   const web3 = new Web3(provider);
-
+  const [total, setTotal] = useState(0);
   const [userBalance, setUserBalance] = useState(0);
   const [tokenPrice, setTokenPrice] = useState(0);
+
+  const [counter, setCounter] = useState(1);
+  const handleIncrement = () => {
+    setCounter(counter + 1);
+  };
+
+  const handleDecrement = () => {
+    if (counter > 1) {
+      setCounter(counter - 1);
+    }
+  };
+
 
   useEffect(() => {
     if (address) {
       if (balance) {
-        const valueEth = web3.utils.fromWei(`${balance}`, 'ether');
+        const valueEth = web3.utils.fromWei(`${balance}`, "ether");
         const totalFixed = parseFloat(valueEth).toFixed(4);
         setUserBalance(totalFixed);
       }
@@ -33,6 +45,7 @@ const Mint = () => {
   useEffect(() => {
     const getPrice = async () => {
       const myContract = new web3.eth.Contract(factoryAbi, factoryAddress);
+      console.log(myContract);
       const price = await myContract.methods
         .monsterPrice()
         .call()
@@ -40,15 +53,21 @@ const Mint = () => {
           return false;
         });
 
-      const valueEth = web3.utils.fromWei(`${price || 0}`, 'ether');  
-
+      const valueEth = web3.utils.fromWei(`${price || 0}`, "ether");
+      console.log(price, valueEth);
       setTokenPrice(valueEth);
     };
     getPrice();
   });
 
+  useEffect(() => {
+    setTotal(counter * tokenPrice);
+    console.log(counter, tokenPrice, total);
+  }, [counter, tokenPrice, total]);
+  
+
   const handleMint = async () => {
-    console.log('MINT!');
+    console.log("MINT!");
     try {
       const myContract = new web3.eth.Contract(factoryAbi, factoryAddress);
 
@@ -75,50 +94,52 @@ const Mint = () => {
 
       setTokenPrice(price);
 
-      console.log('Sale Started', saleStarted);
-      console.log('Sale Started', publicSaleStarted);
-      console.log('Price', price);
-
-      const count = 1;
+      console.log("Sale Started", saleStarted);
+      console.log("Sale Started", publicSaleStarted);
+      console.log("Price", price);
 
       const mintParams = {
-        proof: ['0x0000000000000000000000000000000000000000'],
-        leaf: '0x0000000000000000000000000000000000000000',
-        count,
+        proof: ["0x0000000000000000000000000000000000000000"],
+        leaf: "0x0000000000000000000000000000000000000000",
+        count:counter,
       };
 
-      const total = parseInt(count) * parseFloat(price);
+      const total = parseInt(counter) * parseFloat(price);
       // const totalFixed = parseFloat(total.toFixed(4));
       // const valueEth = web3.utils.toWei(`${totalFixed}`, 'ether');
 
       await myContract.methods
         .mint(mintParams.proof, mintParams.leaf, parseInt(mintParams.count))
         .send({ from: address, value: total })
-        .once('transactionHash', function (hash) {
+        .once("transactionHash", function (hash) {
           // setUserConfirmation(`success`);
           // setHash(hash);
-          console.log('Transaction Hash', hash);
+          console.log("Transaction Hash", hash);
         })
-        .once('receipt', function (receipt) {
+        .once("receipt", function (receipt) {
           // setBlChainConfirmation(`success`);
           // setTimeout(() => {
           //   setSuccess(true);
           // }, 1000);
-          
-          console.log('Transaction Confirmed', receipt);
+
+          console.log("Transaction Confirmed", receipt);
         })
-        .on('error', function (error, receipt) {
+        .on("error", function (error, receipt) {
           // handleError(error);
-          console.log('Error', error);
+          console.log("Error", error);
         });
     } catch (error) {}
   };
   return (
-    
-    <div id='mint_link'>
-      <div className='wallet-client'>
+    <div id="mint_link">
+      <div className="wallet-client">
+        <div>
+          <button onClick={handleDecrement}>-</button>
+          <span>{counter}</span>
+          <button onClick={handleIncrement}>+</button>
+        </div>
         <p>Balance {userBalance} eth</p>
-        <p>Price {tokenPrice} eth</p>
+        <p>Price {total} eth</p>
         <button disabled={!address ? true : false} onClick={handleMint}>
           Mint
         </button>

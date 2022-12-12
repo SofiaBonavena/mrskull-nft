@@ -16,7 +16,7 @@ const Collection = () => {
 
   return (
     <section id="collection_link"> 
-        <h1>Collection</h1>
+        {/* <h1>Collection</h1> */}
         <div className='marquee_container'>
           <Marquee className='marquee' duration={20000}  reverse={true}  pauseOnHover={true}  margin="60px" height="300px" align="center" >
             <div className='img_container'>

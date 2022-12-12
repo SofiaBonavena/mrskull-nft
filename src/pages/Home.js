@@ -5,6 +5,8 @@ import About from "../components/About/About";
 import WalletButton from "../components/WalletButton/WalletButton";
 import WalletClient from "../components/WalletClient/WalletClient";
 import Mint from '../components/Mint/Mint';
+import Faq from '../components/Faq/Faq' ;
+
 const Home = () => {
   return (
     <>
@@ -14,6 +16,7 @@ const Home = () => {
       <WalletButton />
       <WalletClient />
       <About />
+      <Faq />
       
     </>
   );

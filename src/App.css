@@ -22,7 +22,9 @@
 
 .App button {
   background-color: #55B140;
-  font-size: 15px;
+  font-family: montserrat;
+  font-weight: 500;
+  font-size: 17px;
   border-radius: 60px;
   border:0;
   color:white;
