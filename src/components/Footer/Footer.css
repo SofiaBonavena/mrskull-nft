@@ -1,6 +1,12 @@
 .footer_container {
     width: 100%;
     height: 150px;
+    height: 10em;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .footer_text {
@@ -12,9 +18,6 @@
     
 }
 
-.footer {
-    background-color: #163328;
-    height: 5em;
-    padding: 0;
-    margin: 1%;
-}
+/* .footer {
+    background-color: #1b302800;
+} */

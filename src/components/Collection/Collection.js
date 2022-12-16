@@ -18,7 +18,7 @@ const Collection = () => {
     <section id="collection_link"> 
         {/* <h1>Collection</h1> */}
         <div className='marquee_container'>
-          <Marquee className='marquee' duration={20000}  reverse={true}  pauseOnHover={true}  margin="60px" height="300px" align="center" >
+          <Marquee className='marquee' duration={20000}  reverse={true}  pauseOnHover={true}  margin="60px" height="300px"  >
             <div className='img_container'>
             {images.map((image) => (
               <img src={image} alt="imagen" />

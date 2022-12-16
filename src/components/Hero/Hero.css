@@ -27,7 +27,8 @@
 
 @media only screen and (max-width: 769px) {
     .hero.is-info .title {
-        font-family:'Shrikhand';
+        /* font-family:'Shrikhand'; */
+        font-family: 'Pirata One';
         font-size: 60px;
         letter-spacing: 5px;
         color: white;
@@ -38,7 +39,8 @@
 
 @media only screen and (min-width: 769px) {
     .hero.is-info .title {
-        font-family:'Shrikhand';
+        /* font-family:'Shrikhand'; */
+        font-family: 'Pirata One';
         font-size: 80px;
         letter-spacing: 5px;
         color: white;

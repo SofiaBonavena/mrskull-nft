@@ -8,6 +8,7 @@ import {
   useBalance,
 } from "../../contexts/OnboardContext";
 import { factoryAddress, factoryAbi } from "../../services/onboard/contract";
+import WalletClient from "../WalletClient/WalletClient";
 
 const Mint = () => {
   const address = useAddress();
@@ -17,6 +18,8 @@ const Mint = () => {
   const [total, setTotal] = useState(0);
   const [userBalance, setUserBalance] = useState(0);
   const [tokenPrice, setTokenPrice] = useState(0);
+  const [mintStatus, setMintStatus] = useState("Waiting");
+  const [message, setMessage] = useState("Waiting...");
 
   const [counter, setCounter] = useState(1);
   const handleIncrement = () => {
@@ -28,7 +31,6 @@ const Mint = () => {
       setCounter(counter - 1);
     }
   };
-
 
   useEffect(() => {
     if (address) {
@@ -64,7 +66,21 @@ const Mint = () => {
     setTotal(counter * tokenPrice);
     console.log(counter, tokenPrice, total);
   }, [counter, tokenPrice, total]);
-  
+
+  useEffect(() => {
+    if (mintStatus === "waiting") {
+      setMessage("Waiting");
+    }
+    if (mintStatus === "userConfirmed") {
+      setMessage("Waiting for blockchain confirmation");
+    }
+    if (mintStatus === "blockchainConfirmed") {
+      setMessage("Succesful! ");
+    }
+    if (mintStatus === "error") {
+      setMessage("Transaction error ");
+    }
+  }, [mintStatus]);
 
   const handleMint = async () => {
     console.log("MINT!");
@@ -101,7 +117,7 @@ const Mint = () => {
       const mintParams = {
         proof: ["0x0000000000000000000000000000000000000000"],
         leaf: "0x0000000000000000000000000000000000000000",
-        count:counter,
+        count: counter,
       };
 
       const total = parseInt(counter) * parseFloat(price);
@@ -114,6 +130,7 @@ const Mint = () => {
         .once("transactionHash", function (hash) {
           // setUserConfirmation(`success`);
           // setHash(hash);
+          setMintStatus("userConfirmed");
           console.log("Transaction Hash", hash);
         })
         .once("receipt", function (receipt) {
@@ -121,31 +138,46 @@ const Mint = () => {
           // setTimeout(() => {
           //   setSuccess(true);
           // }, 1000);
-
+          setMintStatus("blockchainConfirmed");
           console.log("Transaction Confirmed", receipt);
         })
         .on("error", function (error, receipt) {
           // handleError(error);
+          setMintStatus("error");
           console.log("Error", error);
         });
     } catch (error) {}
   };
   return (
     <div id="mint_link">
-      <div className="wallet-client">
-        <div>
-          <button onClick={handleDecrement}>-</button>
-          <span>{counter}</span>
-          <button onClick={handleIncrement}>+</button>
+      <div className="columns">
+        <div className="column">
+          <p className="main_text"> Im not scared to <del>die</del> mint, and you?</p>
         </div>
-        <p>Balance {userBalance} eth</p>
-        <p>Price {total} eth</p>
-        <button disabled={!address ? true : false} onClick={handleMint}>
-          Mint
-        </button>
+        <div className="column">
+          <div className="wallet-client">
+            <p className="secondary_text">Dare yourself!</p>
+            <div className="button_container">
+              <button onClick={handleDecrement}>-</button>
+              <span>{counter}</span>
+              <button onClick={handleIncrement}>+</button>
+            </div>
+            {/* <p>Balance {userBalance} eth</p> */}
+            <p className="text_total">Total price</p>
+            <div class="line"></div>
+            <p className="text_price">{total} eth</p>
+
+            <button className="button_mint" disabled={!address ? true : false} onClick={handleMint}>
+              Mint
+            </button>
+            <br/>{message}
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
 export default Mint;
+
+

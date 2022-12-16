@@ -28,7 +28,7 @@ const NavBar = () => {
             <span aria-hidden="true"></span>
           </a>
           <a className="navbar-item" href="/">
-            <img src={Image} width={100} height={40}/>
+            <img src={Image} width={150} height={40}/>
           </a>
         </div>
         <div
@@ -39,6 +39,7 @@ const NavBar = () => {
             <a href='#collection_link' className="navbar-item">Collection</a>
             <a href='#mint_link' className="navbar-item">Mint</a>
             <a href='#about_link' className="navbar-item">About</a>
+            <a href='#faq_link' className="navbar-item">FAQ</a>
             <a className="navbar-item"><WalletButton /></a>
           </div>
         </div>

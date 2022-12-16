@@ -2,6 +2,7 @@
 
 #collection_link {
     width: 100%;
+    height: 15em;
 }
 
 h1 {
@@ -15,9 +16,8 @@ h1 {
 
 .marquee_container {
     width: 100%;
-    height: 350px;
-    /* margin-top: 3%; */
     margin-bottom: 3%;
+    background-color: #1b3028;
 }
 
 .marquee {

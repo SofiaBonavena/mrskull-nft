@@ -2,7 +2,6 @@ import "./App.css";
 import './styles/globals.css'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import OnboardProvider from "./contexts/OnboardContext";
-import Header from "./components/Header/Header";
 import Home from "./pages/Home";
 import Footer from "./components/Footer/Footer";
 
@@ -12,7 +11,6 @@ function App() {
     <div className="App">
       <Router>
         <OnboardProvider>
-           <Header />
           <Switch>
             <Route exact path="/">
               <Home />

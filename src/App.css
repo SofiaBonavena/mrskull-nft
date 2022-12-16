@@ -1,5 +1,5 @@
 .App.App {
-  background-color: #163328;
+  /* background-color: #163328; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -11,13 +11,31 @@
 
 .wallet-client {
   text-align: center;
-  margin: 50px 0;
-  background-color: black;
-  padding: 50px;
-  border-radius: 60px;
-  border-color: #55B140;
-  width: 300px;
-  height: 200px;
+    margin: 50px 0;
+    background-color: #1a2b25;
+    padding: 50px;
+    border-radius: 20px;
+    width: 400px;
+    height: 500px;
+    color: #ffffff;
+    font-family: montserrat;
+    border: 1px solid #55B140;
+    box-shadow: 0 0 20px #55b140, 0 0 10px #55b140 inset;
+    animation: neon 1s ease infinite;
+    -moz-animation: neon 1s ease infinite;
+    -webkit-animation: neon 1s ease infinite;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+@keyframes neon {
+  0%,
+  100% {
+    box-shadow: 0 0 0vw #55b1408a, 0 0 0vw #55b1408a, 0 0 1vw 0px #55b1408a, 0 0 6vw 0px #55b1408a, 0 0 0.4vw #ffffff, 0vw 0vw 0.1vw #ffffff;
+  }
+  50% {
+    box-shadow: 0 0 0.5vw #1d3f15, 0 0 1.5vw #1d3f15, 0 0 5vw #1d3f15, 0 0 5vw #1d3f15, 0 0 0.2vw #1d3f15, 0.5vw 0.5vw 0.1vw #1d3f15;  }
 }
 
 .App button {
@@ -25,7 +43,7 @@
   font-family: montserrat;
   font-weight: 500;
   font-size: 17px;
-  border-radius: 60px;
+  border-radius: 15px;
   border:0;
   color:white;
   padding: 10px 30px;
